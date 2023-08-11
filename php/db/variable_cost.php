@@ -1,8 +1,16 @@
 <?php
+/**
+ * DBのvariable_costテーブルを操作するクラス
+ */
 class VariableCost {
 
     /**
-     * // TODO コメント作成
+     * DBのvariable_costテーブルにデータを登録する
+     * 
+     * 関数に渡す連想配列のキーは列名と一致させる必要がある。
+     *
+     * @param [array{...}] $variable_costs 登録するデータ
+     * @return void
      */
     public static function insert($variable_costs) {
         // 連想配列のキーを配列形式で取得
@@ -40,7 +48,15 @@ class VariableCost {
         $sth = null;
     }
 
-    // TODO コメント作成
+    /**
+     * 指定した範囲の日時の変動費を取得する
+     * 
+     * 指定した開始日時から終了日時までの変動費を取得する
+     *
+     * @param [type] $start_date_time 取得する範囲（開始日時）
+     * @param [type] $end_date_time　取得する範囲（終了日時）
+     * @return array{...} 変動費のデータ
+     */
     public static function select_by_date_range($start_date_time, $end_date_time) {
         $sql = "SELECT * FROM variable_cost WHERE created_at BETWEEN ? AND ?";
         // プレースホルダに代入する値

@@ -31,7 +31,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 	echo(json_encode(["budget" => $budget]));
 }
 
-// TODO コメント作成
+
+/**
+ * 残り月の予算を取得する
+ *
+ * @return int　残りの月の予算
+ */
 function get_monthly_budget() {
 	// 変動費を取得する期間
 	$now  = new DateTime("now");
@@ -53,7 +58,16 @@ function get_monthly_budget() {
 	return $total_income - $total_fixed_cost - $total_variable_cost;
 }
 
-// TODO コメント作成
+/**
+ * 指定したキーの合計の値を取得する
+ * 
+ * 配列に格納されている連想配列において、指定したキーの合計値を取得する。
+ * 指定したキーがない場合、値がint型ではない場合は Exception をスローする。
+ *
+ * @param [string] $key_name 連想配列のキー
+ * @param [array] $array 連想配列を格納している配列
+ * @return int 指定したキーの合計値
+ */
 function get_total_key_value($key_name, $array) {
 	$total = 0;
 	foreach ($array as $map) {
