@@ -5,30 +5,61 @@ require_once("db/fixed_cost.php");
 require_once("db/income.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-	// TODO 例外処理の作成
 	try {
 		$budget = get_monthly_budget();
-		echo(json_encode(["budget" => $budget]));
+
+		$response = json_encode(
+			[
+				"result" => true,
+				"budget" => $budget
+			]
+		);
+		echo($response);
 	} catch (Exception $e) {
-		error_log($e->getMessage()."\n", 3, 'indexphp.log');
+		$log_message = $ERROR_LOG_TMPL. $e->getMessage();
+		error_log($log_message, 3, ERROR_LOG_PATH);
+		$response = json_encode(
+			[
+				"result" => false,
+				"budget" => ""
+			]
+		);
+		echo($response);
 	}
-	
 
 } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // TODO 例外処理の作成
 
-	// TODO ポストされてきた値のチェック
-    $costs_length = count($_POST["cost"]);
-    $variable_costs = [];
-    for ($i = 0; $i < $costs_length; $i++) {
-        $variable_cost = ["cost" => $_POST["cost"][$i]];
-        $variable_costs[] = $variable_cost;
-    }
-	
-    // DBにデータ登録をする
-    $insert_result = VariableCost::insert($variable_costs);
-	$budget = get_monthly_budget();
-	echo(json_encode(["budget" => $budget]));
+	try {
+		// TODO ポストされてきた値のチェック
+		$costs_length = count($_POST["cost"]);
+		$variable_costs = [];
+		for ($i = 0; $i < $costs_length; $i++) {
+			$variable_cost = ["cost" => $_POST["cost"][$i]];
+			$variable_costs[] = $variable_cost;
+		}
+		
+		// DBにデータ登録をする
+		$insert_result = VariableCost::insert($variable_costs);
+		$budget = get_monthly_budget();
+		
+		$response = json_encode(
+			[
+				"result" => true,
+				"budget" => $budget
+			]
+		);
+		echo($response);
+	} catch (Exception $e) {
+		$log_message = $ERROR_LOG_TMPL. $e->getMessage();
+		error_log($log_message, 3, ERROR_LOG_PATH);
+		$response = json_encode(
+			[
+				"result" => false,
+				"budget" => ""
+			]
+		);
+		echo($response);
+	}
 }
 
 

@@ -40,12 +40,18 @@ class VariableCost {
             }
         }
 
-        $dbh = new PDO(DSN, DB_USER, DB_PASSWORD);
-        $sth = $dbh->prepare($sql);
-        $sth->execute($data);
-
-        $dbh = null;
-        $sth = null;
+        try {
+            $dbh = new PDO(DSN, DB_USER, DB_PASSWORD, 
+                [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+            );
+            $sth = $dbh->prepare($sql);
+            $sth->execute($data);
+        } catch (PDOException $e) {
+            throw new PDOException($e->getMessage() ."\nsql : ". $sql ."\ndata : ". print_r($data, true));
+        } finally {
+            $dbh = null;
+            $sth = null;
+        }
     }
 
     /**
@@ -64,14 +70,19 @@ class VariableCost {
         $data[] = $start_date_time;
         $data[] = $end_date_time;
 
-        $dbh = new PDO(DSN, DB_USER, DB_PASSWORD, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
-        $sth = $dbh->prepare($sql);
-        $sth->execute($data);
-        $costs = $sth->fetchAll();
-
-        $dbh = null;
-        $sth = null;
-
+        try {
+            $dbh = new PDO(DSN, DB_USER, DB_PASSWORD, 
+                [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]
+            );
+            $sth = $dbh->prepare($sql);
+            $sth->execute($data);
+            $costs = $sth->fetchAll();
+        } catch (PDOException $e) {
+            throw new PDOException($e->getMessage() ."\nsql : ". $sql ."\ndata : ". print_r($data, true));
+        } finally {
+            $dbh = null;
+            $sth = null;
+        }
         return $costs;
     }
 }
