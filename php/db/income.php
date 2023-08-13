@@ -1,6 +1,11 @@
 <?php
 class Income {
     
+    /**
+     * DBから収入を全て取得する
+     *
+     * @return array{...} 収入のデータ
+     */
     public static function select_all() {
         $sql = "SELECT * FROM income";
 
@@ -20,10 +25,9 @@ class Income {
     }
 
     /**
-     * Undocumented function
+     * 渡された収入データを Upsert 処理をする
      *
-     * @param [type] $incomes
-     * @return void
+     * @param [type] $incomes 収入情報
      */
     public static function upsert($dbh, $incomes) {
         // 連想配列のキーを配列形式で取得
@@ -79,8 +83,7 @@ class Income {
     /**
      * Undocumented function
      *
-     * @param [type] $income_no
-     * @return void
+     * @param [type] $income_no 収入登録No
      */
     public static function delete($dbh, $income_no) {
         $sql = "DELETE FROM income WHERE income_no > ?";

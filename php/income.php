@@ -1,7 +1,5 @@
 <?php
 require_once("const.php");
-// require_once("db/variable_cost.php");
-// require_once("db/fixed_cost.php");
 require_once("db/income.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -15,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 		$response = json_encode(
 			[
 				"result" => true,
-				"income" => $income_array // 連想配列を配列に変換
+				"income" => $income_array
 			]
 		);
 		echo($response);
