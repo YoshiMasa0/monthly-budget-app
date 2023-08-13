@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>今月の残り予算</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    </head>
+        
+    <body>
+        <form action="php/income.php" method="post" id="form-area">
+            <div>
+                <span>収入を入力してください</span>
+                <input type="button" value="入力欄を追加" id="add-field-btn" class="btn btn-outline-secondary btn-sm">
+            </div>
+            <div id="input-area"></div>
+            <input type="submit" value="計算" id="submit-btn" class="btn btn-outline-primary mt-2">
+        </form>
+
+        <!-- js読み込み -->
+        <script src="js/common.js"></script>
+        <script src="js/income.js"></script>
+    </body>
+</html>
