@@ -20,7 +20,10 @@ function displayIncome(event) {
     let costs = response["cost"];
     let costsLength = costs.length;
     
-    if (costsLength <= 1 && costs[0] == 0) {
+    if (costsLength == 0) {
+        document.title = '固定費登録画面';
+        addInputField();
+    } else if (costsLength == 1 && costs[0] == 0) {
         // 収入が0円で登録されている場合
         addInputField();
     } else {

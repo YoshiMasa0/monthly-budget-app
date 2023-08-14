@@ -1,14 +1,14 @@
 const FORM_AREA = document.getElementById("form-area");
-let budgetHttp = new XMLHttpRequest();
+let incomeHttp = new XMLHttpRequest();
 
 
 // イベントハンドラを登録
 ADD_FIELD_BTN.addEventListener("click", addInputField);
 FORM_AREA.addEventListener("submit", hasErrorInputValue);
-budgetHttp.addEventListener("load", displayIncome);
+incomeHttp.addEventListener("load", displayIncome);
 
-budgetHttp.open("GET", "http://localhost/budget/php/income.php");
-budgetHttp.send();
+incomeHttp.open("GET", "http://localhost/budget/php/income.php");
+incomeHttp.send();
 
 /**
  * リクエストを送信して取得した残りの予算を画面に表示する
@@ -20,7 +20,10 @@ function displayIncome(event) {
     let incomes = response["income"];
     let incomesLength = incomes.length;
     
-    if (incomesLength <= 1 && incomes[0] == 0) {
+    if (incomesLength == 0) {
+        document.title = '収入登録画面';
+        addInputField();
+    } else if (incomesLength == 1 && incomes[0] == 0) {
         // 収入が0円で登録されている場合
         addInputField();
     } else {

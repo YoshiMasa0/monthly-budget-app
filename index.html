@@ -3,19 +3,23 @@
     <head>
         <meta charset="utf-8">
         <title>今月の残り予算</title>
+        <link rel="stylesheet" href="css/common.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     </head>
         
     <body>
-        <div class="fs-1"><span id="budget"></span>円</div>
-        <form action="index.html" id="form-area">
-            <div>
-                <span>使用金額</span>
-                <input type="button" value="入力欄を追加" id="add-field-btn" class="btn btn-outline-secondary btn-sm">
-            </div>
-            <div id="input-area"></div>
-            <input type="submit" value="計算" id="submit-btn" class="btn btn-outline-primary mt-2">
-        </form>
+        <div class="container">
+            <p class="text-end"><a href="income.html">収入と固定費</a></p>
+            <div class="fs-1 text-center">残り予算<span id="budget"></span>円</div>
+            <form action="index.html" id="form-area">
+                <div class="d-flex justify-content-between">
+                    <span>使用金額を入力してください</span>
+                    <input type="button" value="入力欄を追加" id="add-field-btn" class="btn btn-outline-secondary btn-sm">
+                </div>
+                <div id="input-area"></div>
+                <input type="submit" value="計算" id="submit-btn" class="btn btn-outline-primary mt-2">
+            </form>
+        </div>
 
         <!-- js読み込み -->
         <script src="js/common.js"></script>
