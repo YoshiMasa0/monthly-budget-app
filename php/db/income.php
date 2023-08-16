@@ -81,7 +81,7 @@ class Income {
     }
 
     /**
-     * Undocumented function
+     * 指定の登録NOより大きい番号の収入を削除する
      *
      * @param [type] $income_no 収入登録No
      */

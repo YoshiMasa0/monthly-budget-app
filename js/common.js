@@ -17,8 +17,8 @@ const REPLACE_MAP = {
  * 小数点がある場合は小数点以下を切り捨てた値、文字や空白がある場合は NaN を返す。
  * カンマが入った金額と全角数字の型変換は可能。
  * 
- * /@param {cost} String型の金額
- * /@returns {number|NaN} 型変換に成功した場合は変換語の値、失敗した場合はNanを返す
+ * @param {string} cost 金額
+ * @returns 型変換に成功した場合は変換語の値、失敗した場合はNanを返す
  */
 function convertStringCostToIntCost(cost){
     replacedCost = cost.replace(/[,，０-９]/g, function(match) {

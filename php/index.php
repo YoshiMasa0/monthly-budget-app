@@ -37,9 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 			$variable_cost = ["cost" => $_POST["cost"][$i]];
 			$variable_costs[] = $variable_cost;
 		}
-		
 		// DBにデータ登録をする
-		$insert_result = VariableCost::insert($variable_costs);
+		VariableCost::insert($variable_costs);
 		$budget = get_monthly_budget();
 		
 		$response = json_encode(
@@ -78,9 +77,6 @@ function get_monthly_budget() {
 	$variable_costs = VariableCost::select_by_date_range($start_date_time, $end_date_time);
 	$fixed_costs = FixedCost::select_all();
 	$incomes = Income::select_all();
-
-	// TODO DBに収入が登録されていない場合　収入登録画面にリダイレクト
-	// TODO DBに固定費が登録されていない場合　固定費登録画面にリダイレクト
 
 	$total_variable_cost = get_total_key_value("cost", $variable_costs);
 	$total_fixed_cost = get_total_key_value("cost", $fixed_costs);
