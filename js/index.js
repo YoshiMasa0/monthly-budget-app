@@ -8,7 +8,7 @@ ADD_FIELD_BTN.addEventListener("click", addInputField);
 FORM_AREA.addEventListener("submit", calcMonthlyBudget);
 budgetHttp.addEventListener("load", displayBudget);
 
-budgetHttp.open("GET", "http://localhost/budget/php/index.php");
+budgetHttp.open("GET", "http://localhost/budget/php/index");
 budgetHttp.send();
 addInputField();
 
@@ -69,7 +69,6 @@ function calcMonthlyBudget(event) {
             continue;
         }
         
-        // totalCost += convertedCost;
         costs.append("cost[]", convertedCost);
 
         // 入力欄とエラーメッセージ欄を初期化
@@ -77,7 +76,7 @@ function calcMonthlyBudget(event) {
         ERR_MSG[i].className = "err-msg form-text hidden";
     }
     // 使用金額を登録するリクエストを送信
-    budgetHttp.open("POST", "http://localhost/budget/php/index.php");
+    budgetHttp.open("POST", "http://localhost/budget/php/index");
     budgetHttp.send(costs);
 
     // form 送信のデフォルト動作停止する

@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 		$dbh->commit();
 
 		// リダイレクト
-		header('Location: http://localhost/budget/');
+		header('Location: http://localhost/budget/cost');
 		exit;
 	} catch (Exception $e) {
 		$dbh->rollBack();
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 		error_log($log_message, 3, ERROR_LOG_PATH);
 		
 		// リダイレクト
-		header('Location: http://localhost/budget/error.php');
+		header('Location: http://localhost/budget/error');
 		exit;
 	}
 }
