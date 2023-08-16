@@ -71,17 +71,20 @@ function hasErrorInputValue(event) {
     for(let i = 0; i < inputFieldLength; i++) {
 
         convertedIncome = convertStringCostToIntCost(INPUT_FIELD[i].value);
-        if(isNaN(convertedIncome)) {
+        if (isNaN(convertedIncome)) {
             // int型に変換できなかった場合
             ERR_MSG[i].className = "err-msg form-text";
             ERR_MSG[i].textContent = ILLEGAL_CHAR_ERR_MSG;
             event.preventDefault();
             continue;
         }
-        if(convertedIncome > 100000000) {
+        if (convertedCost > 2147483647 || convertedCost < 0) {
             ERR_MSG[i].className = "err-msg form-text";
             ERR_MSG[i].textContent = OUT_RANGE_ERR_MSG;
             event.preventDefault();
+            continue;
+        }
+        if (convertedCost == 0) {
             continue;
         }
 

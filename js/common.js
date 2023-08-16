@@ -3,7 +3,7 @@ const ADD_FIELD_BTN = document.getElementById("add-field-btn");
 
 // エラーメッセージ
 const ILLEGAL_CHAR_ERR_MSG = "数字と「,」「，」で入力してください";
-const OUT_RANGE_ERR_MSG = "「100,000,000」以下の値を入力してください"
+const OUT_RANGE_ERR_MSG = "0 ～ 2147483647 の値を入力してください";
 
 // 入力値を変換するときに使用するMap
 const REPLACE_MAP = {
